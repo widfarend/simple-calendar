@@ -2,6 +2,12 @@
 
 In the project directory, you can run:
 
+### `npm install`
+
+This will install all the required dependencies for Simple Calendar. 
+
+You can then run any of the following commands:
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
