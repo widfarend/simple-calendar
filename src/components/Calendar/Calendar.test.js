@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Calendar from './Calendar';
 import "../../setupTests";
+import * as calendarConfig from '../../config/calendar.json';
 
 describe('Calendar', () => {
     it('renders without crashing', () => {
@@ -20,6 +21,22 @@ describe('Calendar', () => {
         const wrapper = shallow(<Calendar year="2018" />);
         const yearMessage = <h1>{year}</h1>;
         expect(wrapper.contains(yearMessage)).toEqual(true);
+    });
+
+    it('one month of the current year should be rendered with a current month class', () => {
+        const wrapper = shallow(<Calendar />);
+
+        const complexComponents = wrapper.findWhere(n => n.hasClass('Calendar-month-current'));
+
+        expect(complexComponents.length).toEqual(1);
+    });
+
+    it('one day of the current year should be rendered with a current day class', () => {
+        const wrapper = shallow(<Calendar />);
+
+        const complexComponents = wrapper.findWhere(n => n.hasClass('Calendar-day-current'));
+
+        expect(complexComponents.length).toEqual(1);
     });
 
     it('should count 28 days in February', () => {

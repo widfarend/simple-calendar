@@ -17,6 +17,10 @@
   border-radius: 12px 12px 0px 0px;
 }
 
+.Calendar-month-current {
+  background-color: rgb(46, 204, 113);
+}
+
 .Calendar-month-header h1 {
   color: white;
 }
@@ -46,6 +50,22 @@
 
 .Calendar-day:hover {
   background-color: rgb(248, 248, 248);
+  width: 68.5714px;
+  height: 68.5714px;
+  line-height: 68.5714px;
+}
+
+.Calendar-day-current {
+  flex: 1 0 14.28%;
+  width: 14.28%;
+  background-color: rgb(46, 204, 113);
+  color: rgb(255, 255, 255);
+  height: 68.5714px;
+  line-height: 68.5714px;
+}
+
+.Calendar-day-current:hover {
+  background-color: rgb(108, 214, 145);
   width: 68.5714px;
   height: 68.5714px;
   line-height: 68.5714px;

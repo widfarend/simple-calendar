@@ -6,9 +6,13 @@ class Calendar extends Component {
   constructor(props) {
     super(props);
 
+    // Used to highlight current date
+    const today = new Date();
+
     // Year to display is passed in as a prop / if it's blank, then use the current year
     this.state = {
-      year: props.year || new Date().getFullYear()
+      year: props.year || new Date().getFullYear(),
+        today
     }
   }
 
@@ -18,12 +22,15 @@ class Calendar extends Component {
      */
   renderMonths = () => {
     const months = [];
+
     calendarConfig.months.forEach((month, index) => {
+        const currentMonth = this.state.today.getMonth() === index;
+
         months.push(
         <div key={month} className="Calendar-month">
-          <div className="Calendar-month-header"><h1>{month}</h1></div>
+          <div className={`Calendar-month-header ${currentMonth ? 'Calendar-month-current' : null}`}><h1>{month}</h1></div>
           <div className="Calendar-day-header">{this.renderDayHeader()}</div>
-          <div className="Calendar-days">{this.renderDays(this.state.year, index)}</div>
+          <div className="Calendar-days">{this.renderDays(this.state.year, index, currentMonth)}</div>
         </div>
         );
     });
@@ -53,8 +60,10 @@ class Calendar extends Component {
      * @param m
      * @returns {Array}
      */
-  renderDays = (y, m) => {
+  renderDays = (y, m, currentMonth) => {
       const days = [];
+      const currentDay = currentMonth ? this.state.today.getDate() : null;
+
 
       // Create a new Date object for the first day of the month
       const monthDate = new Date(y, m, 1);
@@ -72,7 +81,7 @@ class Calendar extends Component {
 
       // Push all of the day blocks in
       for(let i = 1; i <= daysInMonth; i++) {
-          days.push(<div key={'day_' + i} className="Calendar-day">{i}</div>);
+          days.push(<div key={'day_' + i} className={`${i === currentDay ? 'Calendar-day-current' : 'Calendar-day'}`}>{i}</div>);
       }
 
       // Calculate the offsets -- if the number of blocks in the month is over 35, then we need to calculate
