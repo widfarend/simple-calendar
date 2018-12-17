@@ -1,5 +1,18 @@
 ## Simple Calendar
 
+The requirements for three tasks were provided and a release was created as each task was completed. You can clone the respective tasks via the following commands:
+
+### Task 1
+### `git clone https://github.com/widfarend/simple-calendar.git -b v1.0`
+
+### Task 2
+### `git clone https://github.com/widfarend/simple-calendar.git -b v2.0`
+
+### Task 3
+### `git clone https://github.com/widfarend/simple-calendar.git -b v3.0`
+
+## Running Simple Calendar
+
 In the project directory, you can run:
 
 ### `npm install`

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './EventsMenu.css';
 
 class EventsMenu extends Component {
-  constructor(props) {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -19,7 +19,7 @@ class EventsMenu extends Component {
      * @returns {*}
      */
     setEvent = (eventType) => {
-      return eventType;
+        return eventType;
     };
 
     /**
@@ -27,24 +27,33 @@ class EventsMenu extends Component {
      * @param type
      * @returns {{id, type: *}}
      */
-  createEvent = (type) => {
-     return { id: this.props.eventState.id, type };
-  };
+    createEvent = (type) => {
+        return {id: this.props.eventState.id, type};
+    };
 
-  render() {
-    const setEvent = this.state.setEvent;
-    return (
-        <div>
-        {this.props.eventState && this.props.eventState.visible ? <div className="EventsMenu" style={{top: this.props.eventState.top, left: this.props.eventState.left}}>
-            <ul>
-                <li id='holiday' className="holiday" onClick={() => setEvent(this.createEvent('holiday'))}>Holiday</li>
-                <li id='birthday' className="birthday" onClick={() => setEvent(this.createEvent('birthday'))}>Birthday</li>
-                <li id='busy' className="busy" onClick={() => setEvent(this.createEvent('busy'))}>Busy</li>
-                <li id='anniversary' className="anniversary" onClick={() => setEvent(this.createEvent('anniversary'))}>Anniversary</li>
-            </ul>
-        </div> : null}</div>
-    );
-  }
+    render() {
+        const setEvent = this.state.setEvent;
+        return (
+            <div>
+                {this.props.eventState && this.props.eventState.visible ? <div className="EventsMenu" style={{
+                    top: this.props.eventState.top,
+                    left: this.props.eventState.left
+                }}>
+                    <ul>
+                        <li id='holiday' className="holiday" onClick={() => setEvent(this.createEvent('holiday'))}>
+                            Holiday
+                        </li>
+                        <li id='birthday' className="birthday" onClick={() => setEvent(this.createEvent('birthday'))}>
+                            Birthday
+                        </li>
+                        <li id='busy' className="busy" onClick={() => setEvent(this.createEvent('busy'))}>Busy</li>
+                        <li id='anniversary' className="anniversary"
+                            onClick={() => setEvent(this.createEvent('anniversary'))}>Anniversary
+                        </li>
+                    </ul>
+                </div> : null}</div>
+        );
+    }
 }
 
 export default EventsMenu;

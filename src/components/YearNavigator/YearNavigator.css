@@ -1,0 +1,11 @@
+.YearNavigator {
+    padding: 20px 0 0 0;
+}
+
+.YearNavigator h1 {
+    font-size: 1.8rem;
+}
+
+.YearNavigator-nav {
+    cursor: pointer;
+}

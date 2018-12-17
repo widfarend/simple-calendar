@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallow, mount, unmount } from 'enzyme';
+import {shallow, mount, unmount} from 'enzyme';
 import EventsMenu from './EventsMenu';
-import "../../setupTests";
+import '../../setupTests';
 
 describe('EventsMenu', () => {
     it('renders without crashing with no props', () => {
-        shallow(<EventsMenu />);
+        shallow(<EventsMenu/>);
     });
 
     it('renders without crashing with props', () => {
@@ -14,7 +14,7 @@ describe('EventsMenu', () => {
             visible: true, id: '2018'
         };
 
-        shallow(<EventsMenu eventState={eventState} />);
+        shallow(<EventsMenu eventState={eventState}/>);
     });
 
     it('should return an event type for a holiday when clicked', () => {
@@ -24,11 +24,11 @@ describe('EventsMenu', () => {
             visible: true, id
         };
 
-        const expected = {"id": id, "type": "holiday"};
+        const expected = {'id': id, 'type': 'holiday'};
 
         const setEvent = jest.fn((e) => e);
 
-        const wrapper = shallow(<EventsMenu setEvent={setEvent} eventState={eventState} />);
+        const wrapper = shallow(<EventsMenu setEvent={setEvent} eventState={eventState}/>);
 
         // wrapper.instance().setEvent = jest.fn();
         const btn = wrapper.find('#holiday');
@@ -43,11 +43,11 @@ describe('EventsMenu', () => {
             visible: true, id
         };
 
-        const expected = {"id": id, "type": "birthday"};
+        const expected = {'id': id, 'type': 'birthday'};
 
         const setEvent = jest.fn((e) => e);
 
-        const wrapper = shallow(<EventsMenu setEvent={setEvent} eventState={eventState} />);
+        const wrapper = shallow(<EventsMenu setEvent={setEvent} eventState={eventState}/>);
 
         // wrapper.instance().setEvent = jest.fn();
         const btn = wrapper.find('#birthday');
@@ -62,11 +62,11 @@ describe('EventsMenu', () => {
             visible: true, id
         };
 
-        const expected = {"id": id, "type": "busy"};
+        const expected = {'id': id, 'type': 'busy'};
 
         const setEvent = jest.fn((e) => e);
 
-        const wrapper = shallow(<EventsMenu setEvent={setEvent} eventState={eventState} />);
+        const wrapper = shallow(<EventsMenu setEvent={setEvent} eventState={eventState}/>);
 
         // wrapper.instance().setEvent = jest.fn();
         const btn = wrapper.find('#busy');
@@ -81,11 +81,11 @@ describe('EventsMenu', () => {
             visible: true, id
         };
 
-        const expected = {"id": id, "type": "anniversary"};
+        const expected = {'id': id, 'type': 'anniversary'};
 
         const setEvent = jest.fn((e) => e);
 
-        const wrapper = shallow(<EventsMenu setEvent={setEvent} eventState={eventState} />);
+        const wrapper = shallow(<EventsMenu setEvent={setEvent} eventState={eventState}/>);
 
         // wrapper.instance().setEvent = jest.fn();
         const btn = wrapper.find('#anniversary');

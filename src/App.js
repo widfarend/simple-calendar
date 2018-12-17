@@ -1,20 +1,31 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import YearNavigator from './components/YearNavigator';
 import './App.css';
 
 // Import the new Calendar component
 import Calendar from './components/Calendar';
 
 class App extends Component {
-  state = { year: 2018 };
+    constructor(props) {
+        super(props);
 
-  render() {
-    return (
-      <div className="App">
-          <h1>{this.state.year}</h1>
-          <Calendar year={this.state.year}/>
-      </div>
-    );
-  }
+        this.state = {year: new Date().getFullYear()};
+
+        this.updateYear = this.updateYear.bind(this);
+    }
+
+    updateYear = (year) => {
+        this.setState({year});
+    };
+
+    render() {
+        return (
+            <div className="App">
+                <YearNavigator year={this.state.year} updateYear={this.updateYear}/>
+                <Calendar year={this.state.year}/>
+            </div>
+        );
+    }
 }
 
 export default App;
