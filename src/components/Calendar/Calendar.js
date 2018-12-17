@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Calendar.css';
+import EventsMenu from '../EventsMenu';
 import * as calendarConfig from '../../config/calendar.json';
 
 class Calendar extends Component {
@@ -10,10 +11,17 @@ class Calendar extends Component {
     const today = new Date();
 
     // Year to display is passed in as a prop / if it's blank, then use the current year
+    // The calendar state is stored in the component state, however, this could be easily stored in a redux store and/or
+    // managed via a rest API
     this.state = {
       year: props.year || new Date().getFullYear(),
-        today
-    }
+        today,
+        eventsMenu: { top: 0, left: 0, visible: false, id: null},
+        eventListState: {}
+    };
+
+    this.setEvent = this.setEvent.bind(this);
+    this.getEvent = this.getEvent.bind(this);
   }
 
     /**
@@ -55,9 +63,10 @@ class Calendar extends Component {
   };
 
     /**
-     * Takes a yea and a month and renders all of the days in the month
+     * Takes a year and a month and renders all of the days in the month
      * @param y
      * @param m
+     * @param currentMonth
      * @returns {Array}
      */
   renderDays = (y, m, currentMonth) => {
@@ -81,7 +90,16 @@ class Calendar extends Component {
 
       // Push all of the day blocks in
       for(let i = 1; i <= daysInMonth; i++) {
-          days.push(<div key={'day_' + i} className={`${i === currentDay ? 'Calendar-day-current' : 'Calendar-day'}`}>{i}</div>);
+          const id = `${y}-${m}-${i}`;
+          let className = i === currentDay ? 'Calendar-day Calendar-day-current' : 'Calendar-day';
+          if(this.state.eventListState[id] && i !== currentDay) {
+              className = 'Calendar-day Calendar-day-' + this.state.eventListState[id];
+          }
+          days.push(<div
+              data-id={`${id}`}
+              key={`${id}`}
+              onClick={this.setEvent}
+              className={`${className}`}>{i}</div>);
       }
 
       // Calculate the offsets -- if the number of blocks in the month is over 35, then we need to calculate
@@ -99,6 +117,47 @@ class Calendar extends Component {
   };
 
     /**
+     * Sets the state of the EventMenu (positions it below the selected date on the calendar / toggles visibility)
+     * @param e
+     */
+  setEvent(e) {
+      e.stopPropagation();
+      let id = e.target.getAttribute('data-id');
+      let visible;
+      if(this.state.eventsMenu.id === id) {
+          visible = false;
+          id = null;
+      } else {
+          visible = true;
+      }
+      this.setState({
+          eventsMenu: {
+              top: (e.target.offsetTop + e.target.offsetHeight) + 'px',
+              left: e.target.offsetLeft + 'px',
+              visible,
+              id
+          }
+      });
+  }
+
+    /**
+     * Callback function passed to the EventsMenu component and handles the events states
+     * @param eventType
+     */
+  getEvent(eventType) {
+      if(this.state.eventListState[eventType.id]
+          && this.state.eventListState[eventType.id] === eventType.type) {
+          this.setState({
+              eventListState: { ...this.state.eventListState, [eventType.id]: null }
+          })
+      } else {
+          this.setState({
+              eventListState: { ...this.state.eventListState, [eventType.id]: eventType.type }
+          })
+      }
+  }
+
+    /**
      * Render the weekday labels
      * @returns {Array}
      */
@@ -114,7 +173,9 @@ class Calendar extends Component {
 
   render() {
     return (
-        <div className="Calendar">{this.renderMonths()}</div>
+        <div className="Calendar">
+            <EventsMenu setEvent={this.getEvent} eventState={this.state.eventsMenu} />
+            {this.renderMonths()}</div>
     );
   }
 }

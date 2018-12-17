@@ -2,6 +2,7 @@
   display:flex;
   flex-wrap:wrap;
   background-color: #F5F1E9;
+  padding: 50px 150px 150px 150px;
 }
 
 .Calendar-month {
@@ -56,19 +57,44 @@
 }
 
 .Calendar-day-current {
-  flex: 1 0 14.28%;
-  width: 14.28%;
   background-color: rgb(46, 204, 113);
   color: rgb(255, 255, 255);
-  height: 68.5714px;
-  line-height: 68.5714px;
 }
 
 .Calendar-day-current:hover {
   background-color: rgb(108, 214, 145);
-  width: 68.5714px;
-  height: 68.5714px;
-  line-height: 68.5714px;
+}
+
+.Calendar-day-holiday {
+    background-color: rgb(255, 173, 94);
+}
+
+.Calendar-day-holiday:hover {
+    background-color: rgb(255, 134, 93);
+}
+
+.Calendar-day-birthday {
+    background-color: rgb(232, 162, 255);
+}
+
+.Calendar-day-birthday:hover {
+    background-color: rgb(211, 123, 255);
+}
+
+.Calendar-day-busy {
+    background-color: rgb(110, 175, 255);
+}
+
+.Calendar-day-busy:hover {
+    background-color: rgb(82, 159, 255);
+}
+
+.Calendar-day-anniversary {
+    background-color: rgb(255, 235, 20);
+}
+
+.Calendar-day-anniversary:hover {
+    background-color: rgb(255, 192, 8);
 }
 
 .Calendar-day-blank {

@@ -1,0 +1,52 @@
+.EventsMenu {
+  /*display:flex;*/
+  /*flex-wrap:wrap;*/
+  /*background-color: #F5F1E9;*/
+  position: absolute;
+  background: #FFFFFF;
+}
+
+.EventsMenu ul {
+  list-style: none;
+  text-align: left;
+}
+
+.EventsMenu li {
+  padding: 5px 3px;
+}
+
+.birthday {
+  background-color: rgb(232, 162, 255);
+  color: white;
+}
+
+.birthday:hover {
+  background-color: rgb(211, 123, 255);
+}
+
+.holiday {
+  background-color: rgb(255, 173, 94);
+  color: white;
+}
+
+.holiday:hover {
+  background-color: rgb(255, 134, 93);
+}
+
+.busy {
+  background-color: rgb(110, 175, 255);
+  color: white;
+}
+
+.busy:hover {
+  background-color: rgb(82, 159, 255);
+}
+
+.anniversary {
+  background-color: rgb(255, 235, 20);
+  color: white;
+}
+
+.anniversary:hover {
+  background-color: rgb(255, 192, 8);
+}
